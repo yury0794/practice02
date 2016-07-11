@@ -5,43 +5,72 @@ import java.util.Scanner;
 public class CalcApp {
 
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println("계산식을 입력해주세요. (a + b)");
-			Scanner scanner = new Scanner(System.in);
-			
 			System.out.print(">> ");
 			String input = scanner.nextLine();
-			
 			if (input.equals("quit") == true) {
 				break;
 			}
+
 			String[] tokens = input.split(" ");
 
-			int a = Integer.parseInt(tokens[0]);
-			int b = Integer.parseInt(tokens[2]);
-
 			switch (tokens[1]) {
-			case "+":
+			case "+": {
 				Add add = new Add();
-				add.setValue(a, b);
-				System.out.println(">> " + add.calculate());
-				break;
-			case "-":
-				Sub sub = new Sub();
-				sub.setValue(a, b);
-				System.out.println(">> " + sub.calculate());
-				break;
-			case "*":
-				Mul mul = new Mul();
-				mul.setValue(a, b);
-				System.out.println(">> " + mul.calculate());
-				break;
-			case "/":
-				Div div = new Div();
-				div.setValue(a, b);
-				System.out.println(">> " + div.calculate());
+
+				int lValue = Integer.parseInt(tokens[0]);
+				int rValue = Integer.parseInt(tokens[2]);
+				add.setValue(lValue, rValue);
+
+				int result = add.calculate();
+				System.out.println(">> " + result);
+
 				break;
 			}
+			case "-": {
+				Sub sub = new Sub();
+
+				int lValue = Integer.parseInt(tokens[0]);
+				int rValue = Integer.parseInt(tokens[2]);
+				sub.setValue(lValue, rValue);
+
+				int result = sub.calculate();
+				System.out.println(">> " + result);
+
+				break;
+			}
+			case "*": {
+				Mul mul = new Mul();
+
+				int lValue = Integer.parseInt(tokens[0]);
+				int rValue = Integer.parseInt(tokens[2]);
+				mul.setValue(lValue, rValue);
+
+				int result = mul.calculate();
+				System.out.println(">> " + result);
+				break;
+			}
+			case "/": {
+				Div div = new Div();
+
+				int lValue = Integer.parseInt(tokens[0]);
+				int rValue = Integer.parseInt(tokens[2]);
+				div.setValue(lValue, rValue);
+
+				int result = div.calculate();
+				System.out.println(">> " + result);
+
+				break;
+			}
+			default: {
+				System.out.println(">> unknown operator");
+				break;
+			}
+			}
 		}
+
+		scanner.close();
 	}
+
 }
